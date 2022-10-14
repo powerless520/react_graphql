@@ -3,31 +3,43 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
 
 const client = new ApolloClient({
-  uri:'https://flyby-gateway.herokuapp.com/',
-  cache:new InMemoryCache(),
+    uri: 'https://apollo-fullstack-tutorial.herokuapp.com/graphql',
+    cache: new InMemoryCache(),
 })
 
 client.query({
-  query: gql`
-      query GetLocations {
-        locations {
-          id
-          name
-          description
-          photo
+    query: gql`
+  query GetLocations {
+    launches {
+        cursor
+        hasMore
+        launches {
+            id
+            site
+            mission {
+                name
+                missionPatch
+            }
+            isBooked
+            rocket {
+                id
+                name
+                type
+            }
         }
-      }
+    }
+  }
     `,
 })
-.then((result) => console.log(result));
+    .then((result) => console.log(result));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ApolloProvider client={client}>
-      <App/>
+        <App/>
     </ApolloProvider>
 );
 
