@@ -39,7 +39,7 @@ function DisplayLocations() {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-    return JSON.stringify(data);
+    return <div>{JSON.stringify(data)}</div>
 
 //  return data.locations.map(({ id, name, description, photo }) => (
 //      <div key={id}>
