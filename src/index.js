@@ -1,22 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Button, DatePicker, Space, version } from "antd";
+import "antd/dist/antd.css";
+import "./index.css";
 
-const hText = <h1>Hello React</h1>
-
-const name = 'John Perez';
-const element = <h1>Goods {name}</h1>
-
-const
-root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <div>
-        <h1>Hello World!</h1>
-        <div>{element}</div>
-        <App/>
+const App = () => {
+  return (
+    <div className="App">
+      <h1>antd version: {version}</h1>
+      <Space>
+        <DatePicker />
+        <Button type="primary">Primary Button</Button>
+      </Space>
     </div>
-);
+  );
+};
 
-reportWebVitals()
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
